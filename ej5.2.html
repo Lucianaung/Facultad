@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+</html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ejercicio 5</title>
+
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css y estilos5.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <link rel="stylesheet" href="css/estilos5.2.css">
+  <link rel="stylesheet" href="css/scrollup.css">
+  <link rel="icon" type="image/png" href="img.2/flor.png">
+
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+  <!--CONTENEDOR-->
+  <div class="container teal darken-4">
+    <!--MENU-->
+    <div class="row">
+      <div class="col s12">
+        <nav>
+          <div class="nav-wrapper teal lighten-4">
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons ">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+              <li><a href="#biografía" class="teal-text text-darken-4">Biografía</a></li>
+              <li><a href="#trabajos" class="teal-text text-darken-4">Producciones</a></li>
+              <li><a href="#processing" class="teal-text text-darken-4">Processing</a></li>
+              <li><a href="#final" class="teal-text text-darken-4">TP Final</a></li
+              </ul>
+            </div>
+          </nav>
+
+          <ul class="sidenav" id="mobile-demo">
+            <li><a href="#biografía" class="teal-text text-darken-4">Biografía</a></li>
+            <li><a href="#trabajos" class="teal-text text-darken-4">Producciones</a></li>
+            <li><a href="#processing" class="teal-text text-darken-4">Processing</a></li>
+            <li><a href="#final" class="teal-text text-darken-4">TP Final</a></li
+            </ul>
+          </div>
+        </div>
+        <!--INICIO-->
+        <div class="inicio">
+          <div class="row">
+            <div class="col s12 m12 l6">
+              <h1 class="tipoT teal-text text-lighten-3">UNGARO<br>LUCIANA</h1>
+              <h5 class="white-text text-white  flow-text">Estudiante de primer año de la carrera de Licenciatura en Diseño Multimedia en la UNLP</h5>
+            </div>
+            <div class="col s12 m12 l6">
+              <img class="responsive-img" src="img.2/lu.png" alt="Foto de Luciana">
+            </div>
+          </div>
+        </div>
+        <!--BIOGRAFÍA-->
+        <div class="biografía teal lighten-3" id="biografía">
+          <div class="row">     <!--titulo-->
+            <div class="col s12">
+              <h3 class="tipoT teal-text text-darken-4 center-align">Biografía</h3>
+            </div>
+          </div>
+          <div class="row">     <!--contenido de biografia-->
+            <div class="col s12 m12 l6">
+              <h6 class="black-text text-black">Nací en el año 2001, en la ciudad de Villa Carlos Paz, Córdoba, Argentina. Alrededor del año 2003, me mudé a la capital de Buenos Aires, La Plata. Desde entonces he vivido en un pueblo llamado City Bell. Pasé mi primaria en la Escuela Estatal nº12 de mi barrio y completé mi secundaria en el Secundario Fray Mamerto Esquiú, con orientación en artes visuales. Desde muy chica me interesó el arte y estuve rodeada de ella a través de diferentes formas. No fue hasta estar en mi quinto año de secundaria que me interese por el diseño, la edición y el ámbito multimedial.</h6>
+            </div>
+            <div class="col s12 m12 l6">
+              <h6 class="black-text text-black">Durante mis estudios secundarios, además de los trabajos regulares, comencé a aprender por mi cuenta, a formarme y crecer creativamente. Realicé trabajos audiovisuales, plásticos, fotográficos, editoriales etc. Además inicié dos cuentas de instagram, de las cuales una hoy en día sigue en pie y colaboro en la imagen visual. </h6>
+            </div>
+          </div>
+        </div>
+
+        <!--TRABAJOS HECHOS CON UN MENU DESPLEGABLE-->
+        <div class="trabajos" id="trabajos">
+          <div class="row">
+            <div class="col s12"> <!--titulo    //      esto es conjava script-->
+              <h3 class="tipoT teal-text text-lighten-3 center-align">Producciones previas</h3>
+              <h6 class="center-align white-text text-white">Trabajos realizados durante la secundaria, primer año de la facultad y externos</h6>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <div class="slider">    <!--slider de trabajos anteriores-->
+                <ul class="slides">
+                  <li>
+                    <img src="img.2/invitacion.jpg">
+                    <div class="caption center-align">
+                      <h3 class="tipoT black-text text-black flow-text">Invitación de Casamiento</h3>
+                      <h5 class="black-text text-black">Trabajo personal digital. 2020.</h5>
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img.2/revista.jpg">
+                    <div class="caption left-align">
+                      <h3 class="tipoT black-text text-black flow-text">Revista</h3>
+                      <h5 class="black-text text-black">Trabajo secundario editorial. 2019</h5>
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img.2/app.jpg">
+                    <div class="caption right-align">
+                      <h3 class="tipoT black-text text-black flow-text">Aplicación movil</h3>
+                      <h5 class="black-text text-black">Trabajo universitario <br>sobre app de delivery. 2021.</h5>
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img.2/juego.jpg">
+                    <div class="caption center-align">
+                      <h3 class="tipoT black-text text-black flow-text">Mockup de Caragolada</h3>
+                      <h5 class="black-text text-black">Parte del trabajo universitario final sobre juego movil. 2021</h5>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--PROCESSING-->
+        <div class="processing" id="processing">
+          <div class="row"> <!--titulo-->
+            <div class="col s12">
+              <h3 class="tipoT teal-text text-lighten-3 center-align">Trabajos Prácticos · Processing</h3>
+            </div>
+          </div>
+          <div class="row"> <!--1º fila de 3cards-->
+            <div class="col s12 m12 l4">
+              <div class="card small">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img class="activator" src="img.2/tp1.png">
+                </div>
+                <div class="card-content">
+                  <span class="card-title activator grey-text text-darken-4">Trabajo Práctico 1<i class="material-icons right">more_vert</i></span>
+                  <p><a href="https://github.com/Lucianaung/tecnomultimedia/blob/tp1/tp1/tp1.pde">Código</a></p>
+                </div>
+                <div class="card-reveal">
+                  <span class="card-title grey-text text-darken-4">Círculo cromático<i class="material-icons right">close</i></span>
+                  <p><strong>Consigna:</strong> crear tu propia versión de un círculo cromático con colores primarios, secundarios y terciarios (RGB)</p>
+                </div>
+              </div>
+            </div>
+            <div class="col s12 m12 l4">
+              <div class="card small">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img class="activator" src="img.2/tp2.png">
+                </div>
+                <div class="card-content">
+                  <span class="card-title activator grey-text text-darken-4">Trabajo Práctico 2<i class="material-icons right">more_vert</i></span>
+                  <p><a href="https://github.com/Lucianaung/tecnomultimedia/blob/tp2/tp2.pde">Código</a></p>
+                </div>
+                <div class="card-reveal">
+                  <span class="card-title grey-text text-darken-4">Animación Créditos<i class="material-icons right">close</i></span>
+                  <p><strong>Consigna:</strong> crear una animación con la secuencia de créditos(*) de una película o videojuego seleccionado.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col s12 m12 l4">
+              <div class="card small">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img class="activator" src="img.2/tp3.png">
+                </div>
+                <div class="card-content">
+                  <span class="card-title activator grey-text text-darken-4">Trabajo Práctico 3<i class="material-icons right">more_vert</i></span>
+                  <p><a href="https://github.com/Lucianaung/tecnomultimedia/blob/tp3/tp3.pde">Código</a></p>
+                </div>
+                <div class="card-reveal">
+                  <span class="card-title grey-text text-darken-4">Ilusión Óptica Interactiva<i class="material-icons right">close</i></span>
+                  <p><strong>Consigna:</strong> crear una ilusión óptica interactiva con estructuras repetitivas (ciclos flor).</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row"> <!--2º fila de 3 cards-->
+            <div class="col s12 m12 l4">
+              <div class="card small">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img class="activator" src="img.2/tp4.png">
+                </div>
+                <div class="card-content">
+                  <span class="card-title activator grey-text text-darken-4">Trabajo Práctico 4<i class="material-icons right">more_vert</i></span>
+                  <p><a href="https://github.com/Lucianaung/tecnomultimedia/blob/tp4/tp4.pde">Código</a></p>
+                </div>
+                <div class="card-reveal">
+                  <span class="card-title grey-text text-darken-4">Aventura Gráfica<i class="material-icons right">close</i></span>
+                  <p><strong>Consigna:</strong> crear una aventura gráfica que haga uso de arreglos y funciones.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col s12 m12 l4">
+              <div class="card small">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img class="activator" src="img.2/tp5.png">
+                </div>
+                <div class="card-content">
+                  <span class="card-title activator grey-text text-darken-4">Trabajo Práctico 5<i class="material-icons right">more_vert</i></span>
+                  <p><a href="https://github.com/Lucianaung/tecnomultimedia/blob/tp5/tp5.pde">Código</a></p>
+                </div>
+                <div class="card-reveal">
+                  <span class="card-title grey-text text-darken-4">Video Juego<i class="material-icons right">close</i></span>
+                  <p><strong>Consigna:</strong> crear un video juego hecho completamente en objetos relacionado con la aventura gráfica del TP4. El video juego debe ser pensado para reemplazar una de las pantallas de conflicto de la aventura gráfica.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col s12 m12 l4">
+              <div class="card small">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img class="activator" src="img.2/tp6.png">
+                </div>
+                <div class="card-content">
+                  <span class="card-title activator grey-text text-darken-4">Trabajo Final<i class="material-icons right">more_vert</i></span>
+                  <p><a href="https://github.com/Lucianaung/tecnomultimedia/blob/tpfinal/tpfinal.pde">Código</a></p>
+                </div>
+                <div class="card-reveal">
+                  <span class="card-title grey-text text-darken-4">Aventura Gráfica + Video Juego<i class="material-icons right">close</i></span>
+                  <p><strong>Consigna:</strong> Realizar una conversión del TP#4 hecho en programación procedural (funciones) a Programación Orientada a Objetos. Luego incorporar el juego realizado en el TP#5, de forma de poder lograr una integración entre ambos TPs.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--TP FINAL-->
+        <div class="final teal lighten-3" id="final">
+          <div class="row">
+            <div class="col s7"> <!--video de aventura gráfica-->
+              <div class="video-container hoverable">
+                <iframe width="450" height="260" src="https://www.youtube.com/embed/0wO9jOBWF2g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+              </div>
+            </div>
+            <div class="col s12 m12 l5"> <!--breve explicación y de qué va-->
+              <h3 class="tipoT teal-text text-darken-4 center-align">TP Final</h3>
+              <h6 class="black-text text-black">Mi último trabajo práctico fue sobre uno de los cuentros de "Crónicas Marcianas" de Ray Bradbury, llamado <i>"Los pueblos silenciosos".</i> A partir de la propuesta de la historia, decidí adaptar la imagen visual y la ambientación sonora de acuerdo a la temática. El juego que creé, si bien no tiene colisión o se basa en ella, sí me parece acorde a la historia tratada.</h6>
+            </div>
+          </div>
+        </div>
+
+        <!--PIE-->
+        <footer class="page-footer footer teal lighten-4">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="tipoT teal-text text-darken-4">Ungaro Luciana</h5>
+                <p class="teal-text text-darken-4">Estudiante de la carrera de Licenciatura en Diseño Multimedial, en la UNLP.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="teal-text text-darken-4">Trabajos previos</h5>
+                <ul>
+                  <li><a class="teal-text text-darken-4" href="https://lucianaung.neocities.org/">Home tp#2</a></li>
+                  <li><a class="teal-text text-darken-4" href="https://lucianaung.neocities.org/ej3.html">Ficha básica tp#1</a></li>
+                  <li><a class="teal-text text-darken-4" href="https://lucianaung.neocities.org/ej4.html">Ficha x12 tp#1</a></li>
+                  <li><a class="teal-text text-darken-4" href="https://lucianaung.neocities.org/ej5.html">Landing page tp1#</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright teal lighten-2">
+            <div class="container">
+              © 2021 Copyright Text
+              <a class="teal-text text-darken-4 right" href="https://www.facebook.com/tecnomultimedia/">Tecno Multimedia 1</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+
+      <!--JavaScript at end of body for optimized loading-->
+      <a href="#up" class="simplescrollup__button simplescrollup__button--hide"><i class="medium material-icons white-text text-white">expand_less</i></a>
+      <script src="js/simplescrollup.js"></script>
+      <script type="text/javascript" src="js/jquery.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/inicio.js"></script>
+
+    </body>
+    </html>

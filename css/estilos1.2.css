@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
+body{
+background-color: #E6C8CF;
+}
+img{
+width: 80%;
+margin-bottom: 25px;
+}
+h2{
+  font-family: 'Shrikhand', cursive;
+  font-size: 32pt;
+}
+.contenedor{
+  width: 420px;
+  background-color: white;
+  border: 8px solid black;
+  margin: 25vh auto 25vh;
+  padding: 20px;
+  text-align: center;
+
+}

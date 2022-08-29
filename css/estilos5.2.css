@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Shrikhand&display=swap');
+
+body{
+  background-color: #002720;
+}
+h6, p, h2, span{ /* saqué el h5*/
+text-align: justify;
+font-family: 'Raleway', sans-serif;
+}
+.h5{
+  font-family: 'Raleway', sans-serif;
+}
+.tipoT{
+  font-family: 'Shrikhand', cursive;
+}
+.inicio, .trabajos, .processing{
+  margin: 80px;
+}
+.biografía, .final{
+  padding: 80px;
+}
+.footer{
+/*  background-color: #003a30;*/
+  margin-top: 100px;
+}
