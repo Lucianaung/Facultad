@@ -1,6 +1,6 @@
 /*
 ARREGLAR:
- * Cómo dejar abierto el borde para que se escapen?
+ * Cómo dejar abierto el borde para que se escapen
  * linea de salida --VER DE INCLINARLA MÁS
  * Cómo limpiar todos los dibujos, que al limpiar se borren los poly's dibujados
  * Que los objetos no estén en cuadrados sino en objetos mas ceñidos a la img

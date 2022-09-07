@@ -1,5 +1,6 @@
 import blobDetection.*;
 import fisica.*;
+import processing.sound.*;
 FWorld mundo;
 
 PGraphics dibujos;
@@ -10,20 +11,26 @@ int grosorDibujo = 12;
 int grosorLinea = 4;
 
 FPoly poly;
+FCircle pelota;
 
+SoundFile osc, pierdeVida;
+
+int s = 20;
 void setup() {
   size (800, 600);
   fondo = loadImage ("fondo.png");
-  background(255);
 
   Fisica.init(this);
   mundo = new FWorld();
   mundo.setEdges(color(255));
 
+  osc = new SoundFile (this, "oscSonido.mp3");
+  pierdeVida = new SoundFile (this, "pierdeVida.mp3");
+
   //DETECCIÓN DE DIBUJOS
   dibujos = createGraphics(width, height);
   dibujos.beginDraw();
-  dibujos.background(255);
+  dibujos.background(fondo);
   dibujos.endDraw();
 
   Objetos objeto1 = new Objetos(103, 21);
@@ -143,7 +150,7 @@ void setup() {
   objeto28.inicializar(569, 447, 33, "flecha5");
   mundo.add(objeto28);
 
-  Objetos objeto29 = new Objetos(86, 28); //PENDULO
+  Objetos objeto29 = new Objetos(86, 28);       //PENDULO
   objeto29.inicializar(568, 42, 34, "pendulo");
   mundo.add(objeto29);
   Objetos objeto30 = new Objetos(142, 26);
@@ -159,14 +166,33 @@ void setup() {
   cadena.setStrokeWeight(grosorLinea);
   mundo.add(cadena);
 
+  pelota = new FCircle(20);           //pelota
+  pelota.setPosition(30, 0);
+  pelota.setRestitution(1);
+  pelota.setFill(0);
+  pelota.setName("pelota");
   theBlobDetection = new BlobDetection(dibujos.width, dibujos.height);
 }
 
 void draw() {
+
   if (mousePressed) {
     dibujarLapiz();
   }
   image (dibujos, 0, 0);
+  textAlign(CENTER);
+  textSize(30);
+  text("0 "+s, 737, 65);
+  fill(0);
+  if (frameCount%60==0){
+    s--;
+  }
+  //if (s==17) {
+  //  osc.play();
+  //  osc.amp(0.1);
+  //} else {
+  //  osc.stop();
+  //}
   mundo.step();
   mundo.draw();
 }
@@ -179,6 +205,10 @@ void dibujarLapiz() {
 }
 
 void keyPressed() {
+  if (key == 'j') {
+    mundo.add(pelota);
+  }
+
   if (key=='b') {
     for (int i=0; i<4; i++) {
       dibujos.filter(BLUR, 4);
@@ -189,7 +219,7 @@ void keyPressed() {
     theBlobDetection.computeBlobs(dibujos.pixels);
   } else if (key=='l') {
     dibujos.beginDraw();
-    dibujos.background(255);
+    dibujos.background(fondo);
     dibujos.endDraw();
     //mundo.clear(); //--> hacer que de alguna forma se borren los poly hechos para volver a intentar
   } else if (key=='p') {
@@ -211,9 +241,46 @@ void keyPressed() {
       mundo.add(poly);
     }
   } else if (key=='v') {
-    //mundo.remove(poly);
+    //mundo.remove(poly); //--> hacer que de alguna forma se borren los poly hechos para volver a intentar
     mundo.clear();
-  } else if (key == BACKSPACE) {
-    //mundo.add(pelota);
+  }
+}
+
+void contactStarted(FContact contacto) {
+  FBody cuerpo1 = contacto.getBody1();
+  FBody cuerpo2 = contacto.getBody2();
+
+  String nombre1 = conseguirNombre(cuerpo1);
+  String nombre2 = conseguirNombre(cuerpo2);
+
+  if (nombre1 == "pelota" && nombre2 == "osc") { //CHOQUE CON OSC
+    println ("hubo contacto con OSC");
+    osc.play();
+    osc.amp(0.1);
+  } else {
+    osc.stop();
+  }
+  if (nombre2 == "pelota" && nombre1 == "osc") {
+    println ("hubo contacto con OSC");
+    osc.play();
+    osc.amp(0.1);
+  } else {
+    osc.stop();
+  }
+
+  if (nombre1 == "pelota" && nombre2 == "fantasmitas") { //CHOQUE CON FANTASMAS --> PIERDE VIDAS
+    println ("hubo contacto con fantasmitas");
+    pierdeVida.play();
+    pierdeVida.amp(0.1);
+    //objeto9.attachImage();
+  } else {
+    pierdeVida.stop();
+  }
+  if (nombre2 == "pelota" && nombre1 == "fantasmitas") {
+    println ("hubo contacto con fantasmitas");
+    pierdeVida.play();
+    pierdeVida.amp(0.1);
+  } else {
+    pierdeVida.stop();
   }
 }
