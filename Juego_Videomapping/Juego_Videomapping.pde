@@ -9,13 +9,15 @@ PImage fondo;
 
 int grosorDibujo = 12;
 int grosorLinea = 4;
-
+String estado = "dibujar";
+int subEstado = 1;
+String estado2 = "enPosicion";
 FPoly poly;
 FCircle pelota;
 
-SoundFile osc, pierdeVida;
-
-int s = 20;
+SoundFile osc, pierdeVida, victoria;
+int s = 10;
+int s2 = 10;
 void setup() {
   size (800, 600);
   fondo = loadImage ("fondo.png");
@@ -26,6 +28,11 @@ void setup() {
 
   osc = new SoundFile (this, "oscSonido.mp3");
   pierdeVida = new SoundFile (this, "pierdeVida.mp3");
+  victoria = new SoundFile (this, "victoria.mp3");
+
+
+  textAlign(CENTER);
+  textSize(30);
 
   //DETECCIÓN DE DIBUJOS
   dibujos = createGraphics(width, height);
@@ -138,17 +145,17 @@ void setup() {
   objeto25.inicializar(578, 525, 25, "bossF");
   mundo.add(objeto25);
 
-  Objetos objeto26 = new Objetos(70, 14);
-  objeto26.inicializar(476, 345, 31, "flecha3");
-  mundo.add(objeto26);
+  //Objetos objeto26 = new Objetos(70, 14);
+  //objeto26.inicializar(476, 345, 31, "flecha3");
+  //mundo.add(objeto26);
 
-  Objetos objeto27 = new Objetos(55, 36);
-  objeto27.inicializar(521, 394, 32, "flecha4");
-  mundo.add(objeto27);
+  //Objetos objeto27 = new Objetos(55, 36);
+  //objeto27.inicializar(521, 394, 32, "flecha4");
+  //mundo.add(objeto27);
 
-  Objetos objeto28 = new Objetos(55, 36);
-  objeto28.inicializar(569, 447, 33, "flecha5");
-  mundo.add(objeto28);
+  //Objetos objeto28 = new Objetos(55, 36);
+  //objeto28.inicializar(569, 447, 33, "flecha5");
+  //mundo.add(objeto28);
 
   Objetos objeto29 = new Objetos(86, 28);       //PENDULO
   objeto29.inicializar(568, 42, 34, "pendulo");
@@ -167,32 +174,81 @@ void setup() {
   mundo.add(cadena);
 
   pelota = new FCircle(20);           //pelota
-  pelota.setPosition(30, 0);
-  pelota.setRestitution(1);
+  pelota.setPosition(40, 8);
+  pelota.setRestitution(0.5);
   pelota.setFill(0);
   pelota.setName("pelota");
+
+  FLine salida = new FLine(10, 40, 120, 85); //linea de salida
+  salida.setStatic(true);
+  salida.setStrokeWeight(grosorLinea);
+  mundo.add(salida);
+
   theBlobDetection = new BlobDetection(dibujos.width, dibujos.height);
 }
 
 void draw() {
 
-  if (mousePressed) {
-    dibujarLapiz();
+  if (estado == "dibujar") {
+    if (mousePressed) {
+      dibujarLapiz();
+    }
+    image (dibujos, 0, 0);
   }
-  image (dibujos, 0, 0);
-  textAlign(CENTER);
-  textSize(30);
-  text("0 "+s, 737, 65);
+  if (estado == "dibujar" && s==0) {
+    //blur
+    if (subEstado == 1) {
+      for (int i=0; i<4; i++) {
+        dibujos.filter(BLUR, 4);
+        subEstado=2;
+      }
+    }
+    if (subEstado == 2) {
+      // detectar
+      theBlobDetection.setPosDiscrimination(false);
+      theBlobDetection.setThreshold(0.60f); //0.38f--> revisar con el pizarrón, es qué tanto gris recibe
+      theBlobDetection.computeBlobs(dibujos.pixels);
+      subEstado=3;
+    }
+    if (subEstado == 3) {
+      // poly
+      Blob b;
+      EdgeVertex eA;
+      for (int n = 0; n < theBlobDetection.getBlobNb(); n++) {
+        poly = new FPoly(); //FPoly
+        poly.setStatic(true);
+        poly.setGrabbable(false);
+        b = theBlobDetection.getBlob(n);
+        if (b!=null) {
+          for (int m = 0; m < b.getEdgeNb(); m += 20) { //--> simplifica la forma
+            eA = b.getEdgeVertexA(m);
+            if (eA !=null ) {
+              poly.vertex(eA.x*width, eA.y*height);
+            }
+          }
+          mundo.add(poly);
+          subEstado=4;
+        }
+      }
+     //}--> errores
+    if (subEstado == 4) {
+      // limpiar
+      dibujos.beginDraw();
+      dibujos.background(fondo);
+      dibujos.endDraw();
+      dibujar();
+      //mundo.add(pelota);
+    }
+  }
+} // --> errores
+  text("0 " +s, 737, 65);
   fill(0);
-  if (frameCount%60==0){
+  if (frameCount%60==0) {
     s--;
+    if (s<=0) {
+      s=0;
+    }
   }
-  //if (s==17) {
-  //  osc.play();
-  //  osc.amp(0.1);
-  //} else {
-  //  osc.stop();
-  //}
   mundo.step();
   mundo.draw();
 }
@@ -204,47 +260,71 @@ void dibujarLapiz() {
   dibujos.endDraw();
 }
 
-void keyPressed() {
-  if (key == 'j') {
-    mundo.add(pelota);
-  }
+void dibujar() {
+  text ("DALEEEEE", width/2, height/2);
+  //text("0 "+ s, width/2, height/2);
+  fill(0, 58, 62);
+  //if (frameCount%60==0) {
+  //  s--;
+  //  if (s<=0) {
+  //    s=0;
+  //  }
+  //}
+  mundo.add(pelota);
 
-  if (key=='b') {
-    for (int i=0; i<4; i++) {
-      dibujos.filter(BLUR, 4);
-    }
-  } else if (key=='d') {
-    theBlobDetection.setPosDiscrimination(false);
-    theBlobDetection.setThreshold(0.60f); //0.38f--> revisar con el pizarrón, es qué tanto gris recibe
-    theBlobDetection.computeBlobs(dibujos.pixels);
-  } else if (key=='l') {
-    dibujos.beginDraw();
-    dibujos.background(fondo);
-    dibujos.endDraw();
-    //mundo.clear(); //--> hacer que de alguna forma se borren los poly hechos para volver a intentar
-  } else if (key=='p') {
-    Blob b;
-    EdgeVertex eA;
-    for (int n = 0; n < theBlobDetection.getBlobNb(); n++) {
-      poly = new FPoly(); //FPoly
-      poly.setStatic(true);
-      poly.setGrabbable(false);
-      b = theBlobDetection.getBlob(n);
-      if (b!=null) {
-        for (int m = 0; m < b.getEdgeNb(); m += 20) { //--> simplifica la forma
-          eA = b.getEdgeVertexA(m);
-          if (eA !=null ) {
-            poly.vertex(eA.x*width, eA.y*height);
-          }
-        }
-      }
-      mundo.add(poly);
-    }
-  } else if (key=='v') {
-    //mundo.remove(poly); //--> hacer que de alguna forma se borren los poly hechos para volver a intentar
-    mundo.clear();
+  if (pelota.getX()>width-101 && pelota.getY()>height-140) {
+    estado2 = "ganar";
+  }
+  if (estado2 == "ganar") {
+    victoria.play();
+    victoria.amp(0.1);
+  }
+  if (s2==0) {
+    println("pierde");
   }
 }
+
+/*void keyPressed() {
+ if (key == 'j') {
+ mundo.add(pelota);
+ }
+ 
+ if (key=='b') {
+ for (int i=0; i<4; i++) {
+ dibujos.filter(BLUR, 4);
+ }
+ } else if (key=='d') {
+ theBlobDetection.setPosDiscrimination(false);
+ theBlobDetection.setThreshold(0.60f); //0.38f--> revisar con el pizarrón, es qué tanto gris recibe
+ theBlobDetection.computeBlobs(dibujos.pixels);
+ } else if (key=='l') {
+ dibujos.beginDraw();
+ dibujos.background(fondo);
+ dibujos.endDraw();
+ //mundo.clear(); //--> hacer que de alguna forma se borren los poly hechos para volver a intentar
+ } else if (key=='p') {
+ Blob b;
+ EdgeVertex eA;
+ for (int n = 0; n < theBlobDetection.getBlobNb(); n++) {
+ poly = new FPoly(); //FPoly
+ poly.setStatic(true);
+ poly.setGrabbable(false);
+ b = theBlobDetection.getBlob(n);
+ if (b!=null) {
+ for (int m = 0; m < b.getEdgeNb(); m += 20) { //--> simplifica la forma
+ eA = b.getEdgeVertexA(m);
+ if (eA !=null ) {
+ poly.vertex(eA.x*width, eA.y*height);
+ }
+ }
+ }
+ mundo.add(poly);
+ }
+ } else if (key=='v') {
+ //mundo.remove(poly); //--> hacer que de alguna forma se borren los poly hechos para volver a intentar
+ mundo.clear();
+ }
+ }*/
 
 void contactStarted(FContact contacto) {
   FBody cuerpo1 = contacto.getBody1();
