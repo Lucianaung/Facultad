@@ -16,8 +16,8 @@ FPoly poly;
 FCircle pelota;
 
 SoundFile osc, pierdeVida, victoria;
-int s = 5;
-int seg = 10;
+int s;
+int seg;
 void setup() {
   size (800, 600);
   fondo = loadImage ("fondo.png");
@@ -28,9 +28,10 @@ void setup() {
 
   osc = new SoundFile (this, "oscSonido.mp3");
   pierdeVida = new SoundFile (this, "pierdeVida.mp3");
-  victoria = new SoundFile (this, "ganar.mp3");
+  victoria = new SoundFile (this, "victoria.mp3");
 
-
+  s = 5;
+  seg = 10;
   textAlign(CENTER);
   textSize(30);
 
@@ -184,15 +185,15 @@ void setup() {
   salida.setStrokeWeight(grosorLinea);
   mundo.add(salida);
 
-  FBox llegada = new FBox(101, 140);
-  llegada.isSensor();
-  llegada.setPosition(width-101/2, height-140/2);
-  llegada.setNoStroke();
-  llegada.setFill(255, 25, 205);
-  llegada.setStatic(true);
-  llegada.setGrabbable(false);
-  llegada.setName("meta");
-  mundo.add(llegada);
+  //FBox llegada = new FBox(101, 140);
+  //llegada.isSensor();
+  //llegada.setPosition(width-101/2, height-140/2);
+  //llegada.setNoStroke();
+  //llegada.setFill(255, 25, 205);
+  //llegada.setStatic(true);
+  //llegada.setGrabbable(false);
+  //llegada.setName("meta");
+  //mundo.add(llegada);
 
   theBlobDetection = new BlobDetection(dibujos.width, dibujos.height);
 }
@@ -252,6 +253,10 @@ void draw() {
   if (pelota.getX()>width-101 && pelota.getY()>height-140) {
     victoria.play();
     victoria.amp(0.1);
+    setup();
+    osc.stop();
+    pierdeVida.play();
+    pierdeVida.amp(0.1);
   } else {
     victoria.stop();
   }
@@ -265,18 +270,14 @@ void draw() {
       s=0;
     }
   }
-  
+
   //PERDER REINICIAR
-  if (s== 0 && subEstado == 4) {
+  if (s==0) {
     text(seg, 300, 65);
     if (frameCount%60==0) {
       seg--;
-      if (seg<=0) {
-        //mundo.clear();
-        mundo.remove(poly);
-        mundo.remove(pelota);
-        estado = "dibujar";
-        s = 5;
+      if (seg<=0 && pelota.getX()<width-101 && pelota.getX()>0 && pelota.getY()<height-140 && pelota.getY()>0) {
+        setup();
         osc.stop();
         pierdeVida.play();
         pierdeVida.amp(0.1);
@@ -284,7 +285,7 @@ void draw() {
     }
   }
   mundo.step();
-  mundo.draw();//Debug
+  mundo.draw();
 }
 
 void dibujarLapiz() {
