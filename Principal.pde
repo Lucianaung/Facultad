@@ -17,7 +17,7 @@ FCircle pelota;
 
 SoundFile osc, pierdeVida, victoria;
 int s;
-int seg = 10;
+int seg;
 void setup() {
   size (800, 600);
   fondo = loadImage ("fondo.png");
@@ -31,6 +31,7 @@ void setup() {
   victoria = new SoundFile (this, "victoria.mp3");
 
   s = 5;
+  seg = 10;
   textAlign(CENTER);
   textSize(30);
 
@@ -184,15 +185,15 @@ void setup() {
   salida.setStrokeWeight(grosorLinea);
   mundo.add(salida);
 
-  FBox llegada = new FBox(101, 140);
-  llegada.isSensor();
-  llegada.setPosition(width-101/2, height-140/2);
-  llegada.setNoStroke();
-  llegada.setFill(255, 25, 205);
-  llegada.setStatic(true);
-  llegada.setGrabbable(false);
-  llegada.setName("meta");
-  mundo.add(llegada);
+  //FBox llegada = new FBox(101, 140);
+  //llegada.isSensor();
+  //llegada.setPosition(width-101/2, height-140/2);
+  //llegada.setNoStroke();
+  //llegada.setFill(255, 25, 205);
+  //llegada.setStatic(true);
+  //llegada.setGrabbable(false);
+  //llegada.setName("meta");
+  //mundo.add(llegada);
 
   theBlobDetection = new BlobDetection(dibujos.width, dibujos.height);
 }
@@ -267,11 +268,11 @@ void draw() {
   }
 
   //PERDER REINICIAR
-  if (s==0 && ) {
+  if (s==0) {
     text(seg, 300, 65);
     if (frameCount%60==0) {
       seg--;
-      if (seg<=0) {
+      if (seg<=0 && pelota.getX()<width-101 && pelota.getX()>0 && pelota.getY()<height-140 && pelota.getY()>0) {
         setup();
         //mundo.remove(pelota);
         //estado = "dibujar";
