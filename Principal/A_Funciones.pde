@@ -13,6 +13,29 @@ String conseguirNombre(FBody cuerpo) {
   return nombre;
 }
 
+void setear() {
+  osc = new SoundFile (this, "oscSonido.mp3");
+  pierdeVida = new SoundFile (this, "pierdeVida.mp3");
+  victoria = new SoundFile (this, "victoria.mp3");
+
+  fondo = loadImage("fondo.png");
+
+  dibujos = createGraphics(width, height);
+  dibujos.beginDraw();
+  dibujos.background(fondo);
+  dibujos.endDraw();
+  
+  sC1 = 10;
+  sC2 = 10;
+  grosorDibujo = 12;
+  grosorLinea = 4;
+  estado = "dibujar";
+  pelotaDesactivada = false;
+  sonidoDesactivado = false;
+  
+  theBlobDetection = new BlobDetection(dibujos.width, dibujos.height);
+}
+
 void dibujarLapiz() {
   dibujos.beginDraw();
   dibujos.strokeWeight(grosorDibujo);
@@ -20,34 +43,23 @@ void dibujarLapiz() {
   dibujos.endDraw();
 }
 
-void setear() {
-  osc = new SoundFile (this, "oscSonido.mp3");
-  pierdeVida = new SoundFile (this, "pierdeVida.mp3");
-  victoria = new SoundFile (this, "victoria.mp3");
-
-  fondo = loadImage("fondo.png");
-  sC1 = 5;
-  sC2 = 10;
-  grosorDibujo = 12;
-  grosorLinea = 4;
-  estado = "inicio";
-  caePelota = false;
-  limpiar = false;
+void contador() {
+  text(sC1, 715, 65);
+  fill(0);
+  if (frameCount % 60 == 0) {
+    sC1--;
+    if (sC1<=0) {
+      sC1=0;
+    }
+  }
 }
 
 void agregarPelota() {
-
-  for (int i = 0; i<1; i++) {
-    pelota = new FCircle(20); //pelota
-    pelota.setPosition(40, 8);
-    pelota.setRestitution(0.5);
-    pelota.setFill(0);
-    pelota.setName("pelota");
-
-    //  if (caePelota = true) {
-    //  mundo.add(pelota);
-    //}
-  }
+  pelota = new FCircle(20);
+  pelota.setPosition(40, 8);
+  pelota.setRestitution(0.5);
+  pelota.setFill(0);
+  pelota.setName("pelota");
 }
 
 void detectarYLimpiar() {
@@ -66,6 +78,7 @@ void detectarYLimpiar() {
     poly = new FPoly(); //FPoly
     poly.setStatic(true);
     poly.setGrabbable(false);
+    poly.setName("lineas");
     b = theBlobDetection.getBlob(n);
     if (b!=null) {
       for (int m = 0; m < b.getEdgeNb(); m += 20) { //--> simplifica la forma
@@ -78,21 +91,7 @@ void detectarYLimpiar() {
     }
   }
   //LIMPIAR
-  //limpiar = true;
-  //if (limpiar == true) {
-  //  dibujos.beginDraw();
-  //  dibujos.background(fondo);
-  //  dibujos.endDraw();
-  //}
-}
-
-void contador() {
-  text(sC1, 715, 65);
-  fill(0);
-  if (frameCount % 60 == 0) {
-    sC1--;
-    if (sC1<=0) {
-      sC1=0;
-    }
-  }
+  dibujos.beginDraw();
+  dibujos.background(fondo);
+  dibujos.endDraw();
 }

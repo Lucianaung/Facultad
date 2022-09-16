@@ -11,6 +11,9 @@ PGraphics dibujos;
 PImage fondo;
 int sC1, sC2, grosorDibujo, grosorLinea;
 String estado;
+Boolean pelotaDesactivada;
+Boolean sonidoDesactivado;
+Boolean perder = false;
 Boolean caePelota, limpiar;
 
 FPoly poly;
@@ -24,49 +27,43 @@ void setup() {
 
   setear();
 
-  dibujos = createGraphics(width, height);
-  dibujos.beginDraw();
-  dibujos.background(fondo);
-  dibujos.endDraw();
-
   textAlign(CENTER);
   textSize(30);
 
   objetos();
   agregarPelota();
 
-  theBlobDetection = new BlobDetection(dibujos.width, dibujos.height);
-  println(estado == "detectar");
+  println(estado.equals("perder"));
 }
 
 void draw() {
-  
-  if (mousePressed) {
+
+  if (estado.equals("dibujar") && mousePressed) {
     dibujarLapiz();
-    estado = "dibujar";
   }
 
   image (dibujos, 0, 0);
   contador();
 
-  if (sC1==0) {
+  if (estado.equals("dibujar") && sC1==0) {
     estado = "detectar";
+  }
+  if (estado.equals("detectar")) {
     detectarYLimpiar();
-    if (limpiar = true) {
     estado = "jugar";
-    }
   }
-
-  if (estado == "jugar") {
-    caePelota = true;
-    if (caePelota == true) {
-      mundo.add(pelota);
-    }
+  if (estado.equals("jugar") && !pelotaDesactivada) {
+    mundo.add(pelota);
+    pelotaDesactivada = true;
   }
+      if (estado.equals("jugar") && perder == true) { //CHECKEAR ESTO
+        estado = "perder";
+      }
+      if (estado.equals("perder")) {
+        setear();
+      }
 
 
-
-  //agregarPelota();
 
   mundo.step();
   mundo.draw();
