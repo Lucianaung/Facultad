@@ -56,12 +56,10 @@ void draw() {
     mundo.add(pelota);
     pelotaDesactivada = true;
   }
-      if (estado.equals("jugar") && perder == true) { //CHECKEAR ESTO
-        estado = "perder";
-      }
-      if (estado.equals("perder")) {
-        setear();
-      }
+  
+  if (estado.equals("perder")) {
+    setear();
+  }
 
 
 
