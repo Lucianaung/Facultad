@@ -6,36 +6,32 @@ void contactStarted(FContact contacto) {
   String nombre2 = conseguirNombre(cuerpo2);
 
   //COLISION CON OSC
-  if (nombre1 == "pelota" && nombre2 == "osc" && !sonidoDesactivado) { //CHOQUE CON OSC
+  if (nombre1 == "pelota" && nombre2 == "osc" && !oscDesactivado) { //CHOQUE CON OSC
     println ("hubo contacto con OSC");
     osc.play();
     osc.amp(0.1);
-    sonidoDesactivado =true;
+    oscDesactivado =true;
   }
-  if (nombre2 == "pelota" && nombre1 == "osc" && !sonidoDesactivado) {
+  if (nombre2 == "pelota" && nombre1 == "osc" && !oscDesactivado) {
     println ("hubo contacto con OSC");
     osc.play();
     osc.amp(0.1);
-    sonidoDesactivado =true;
+    oscDesactivado =true;
   }
-  
+
   //COLISION CON FANTASMAS
-  if (nombre1 == "pelota" && nombre2 == "fantasmitas" && !sonidoDesactivado) { //CHOQUE CON FANTASMAS --> PIERDE VIDAS
+  if (nombre1 == "pelota" && nombre2 == "fantasmitas" && !fantasmasDesactivado) { //CHOQUE CON FANTASMAS --> PIERDE VIDAS
     println ("hubo contacto con fantasmitas");
     pierdeVida.play();
     pierdeVida.amp(0.1);
-    mundo.remove(poly); //CHECKEAR ESTO
-    mundo.remove(pelota); //CHECKEAR ESTO
-    sonidoDesactivado =true;
+    fantasmasDesactivado =true;
     estado = "perder";
   }
-  if (nombre2 == "pelota" && nombre1 == "fantasmitas" && !sonidoDesactivado) {
+  if (nombre2 == "pelota" && nombre1 == "fantasmitas" && !fantasmasDesactivado) {
     println ("hubo contacto con fantasmitas");
     pierdeVida.play();
     pierdeVida.amp(0.1);
-    mundo.remove(poly); //CHECKEAR ESTO
-    mundo.remove(pelota); //CHECKEAR ESTO
-    sonidoDesactivado =true;
+    fantasmasDesactivado =true;
     estado = "perder";
   }
 }

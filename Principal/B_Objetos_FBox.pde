@@ -129,7 +129,7 @@ void objetos() {
   objeto25.inicializar(578, 525, 25, "bossF");
   mundo.add(objeto25);
 
-  Objetos objeto29 = new Objetos(86, 28);       //PENDULO
+  Objetos objeto29 = new Objetos(86, 28);//PENDULO  
   objeto29.inicializar(568, 42, 34, "pendulo");
   mundo.add(objeto29);
   Objetos objeto30 = new Objetos(142, 26);

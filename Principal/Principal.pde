@@ -7,14 +7,17 @@ FWorld mundo;
 SoundFile osc, pierdeVida, victoria;
 BlobDetection theBlobDetection;
 
-PGraphics dibujos;
 PImage fondo;
-int sC1, sC2, grosorDibujo, grosorLinea;
+PGraphics dibujos;
+PFont font;
 String estado;
+
 Boolean pelotaDesactivada;
-Boolean sonidoDesactivado;
+Boolean oscDesactivado;
+Boolean fantasmasDesactivado;
 Boolean perder = false;
-Boolean caePelota, limpiar;
+
+int sC1, sC2, grosorDibujo, grosorLinea;
 
 FPoly poly;
 FCircle pelota;
@@ -27,16 +30,16 @@ void setup() {
 
   setear();
 
+  font = loadFont ("Blokletters-Viltstift-48.vlw");
+  textFont(font);
   textAlign(CENTER);
   textSize(30);
 
-  objetos();
   agregarPelota();
-
-  println(estado.equals("perder"));
 }
 
 void draw() {
+  println(estado);
 
   if (estado.equals("dibujar") && mousePressed) {
     dibujarLapiz();
@@ -56,8 +59,9 @@ void draw() {
     mundo.add(pelota);
     pelotaDesactivada = true;
   }
-  
   if (estado.equals("perder")) {
+    mundo.remove(pelota);
+    mundo.clear();
     setear();
   }
 
