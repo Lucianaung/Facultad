@@ -8,6 +8,16 @@ ARREGLAR:
  * Ver estética de contador
  * Agregar pantalla de ganar y perder
  * que el pendulo se mueva o quitarlo
+ * que al quedarse quieta la pelota pierda
+ 
+ SONIDOS:
+ - pelota al caer
+ - perder con fantasmitas o boss fight
+ - contacto con osc y otras cosas
+ - perder por no moverse
+ - llegar a la meta
+ - al dibujar
+ - reloj
  
  MECANICAS DEL JUEGO:
  1 Etapa de dibujo: Hay un contador al momento de dibujar (15 seg),
