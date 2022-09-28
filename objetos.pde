@@ -151,12 +151,7 @@ void objetos() {
   salida.setStrokeWeight(grosorLinea);
   mundo.add(salida);
   
-  pelota = new FCircle(20);
-  pelota.setPosition(40, 8);
-  pelota.setRestitution(0.5);
-  pelota.setAllowSleeping(true);
-  pelota.setFill(0);
-  pelota.setName("pelota");
+
 }
 
 

@@ -16,7 +16,7 @@ int paso;
 FPoly poly;
 FCircle pelota;
 
-
+int cuentaReg2;
 void setup() {
   size (800, 600);
   Fisica.init(this);
@@ -27,29 +27,39 @@ void setup() {
   textFont(font);
   textAlign(CENTER);
   textSize(21);
+
+  pelota = new FCircle(20);
+  pelota.setPosition(40, 8);
+  pelota.setRestitution(0.5);
+  pelota.setAllowSleeping(true);
+  pelota.setFill(0);
+  pelota.setName("pelota");
 }
 
 void draw() {
   println("estado:"+estado);
+  println(pelota.isSleeping());
   image (dibujos, 0, 0);
-
 
   if (estado.equals("DIBUJAR") && mousePressed) {
     dibujar();
-  }
-  else if (estado == "JUGAR" && !pelotaDesactivada) {
+  } else if (estado == "JUGAR" && !pelotaDesactivada) {
     jugar();
-    pelotaDesactivada = true;
-  } else if (estado == "GANAR") {
-    ganar();
-  } else if (estado == "PERDER") {
-    fill(152,65,235);
-    rect(150,165,430,200);
-    //perder();
   }
+  else if (pelota.isSleeping()) {
+    estado = "PERDER";
+  }
+  
+  if (estado == "GANAR") {
+    ganar();
+  }
+  if (estado == "PERDER") {
+    perder();
+  }
+
   contador();
   mundo.step();
-  mundo.drawDebug();
+  mundo.draw();
 }
 
 void contador() {
@@ -60,6 +70,6 @@ void contador() {
     text(cuentaReg, 715, 65);
   } else {
     estado = "JUGAR";
-    cuentaReg=0;
+    cuentaReg = 1;
   }
 }

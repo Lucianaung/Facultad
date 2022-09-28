@@ -10,7 +10,7 @@ void setear() {
   dibujos.background(fondo);
   dibujos.endDraw();
 
-  tiempoLimite = 8;
+  tiempoLimite = 20;
   grosorDibujo = 12;
   grosorLinea = 4;
   estado = "DIBUJAR";

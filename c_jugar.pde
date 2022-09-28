@@ -1,11 +1,6 @@
 void jugar() {
-  if (!pelota.isSleeping()) {
-    detectar();
-    mundo.add(pelota);
+  detectar();
+  mundo.add(pelota);
+  pelotaDesactivada = true;
+  
   }
-  if (pelota.isSleeping()) {
-    estado = "PERDER";
-  }
-
-  println("pelota durmiente: "+pelota.isSleeping());
-}
