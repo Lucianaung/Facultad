@@ -16,9 +16,6 @@ int paso;
 FPoly poly;
 FCircle pelota;
 
-/////
-Boolean detectado;
-/////
 
 void setup() {
   size (800, 600);
@@ -39,10 +36,7 @@ void draw() {
 
   if (estado.equals("DIBUJAR") && mousePressed) {
     dibujar();
-  } 
-  //else if (estado == "DETECTAR") {
-  //  detectar();
-  //} 
+  }
   else if (estado == "JUGAR" && !pelotaDesactivada) {
     jugar();
     pelotaDesactivada = true;
