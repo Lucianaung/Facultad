@@ -1,22 +1,26 @@
 void setear() {
-  osc = new SoundFile (this, "oscSonido.mp3");
-  pierdeVida = new SoundFile (this, "pierdeVida.mp3");
-  victoria = new SoundFile (this, "victoria.mp3");
+  trazo = new SoundFile (this, "trazo.mp3");
+  error = new SoundFile (this, "error.mp3");
+  caer = new SoundFile (this, "caer.mp3");
+  ganar = new SoundFile(this, "ganar.mp3"); 
+  alarma = new SoundFile(this, "alarma.mp3");
 
   fondo = loadImage("fondo.png");
 
   dibujos = createGraphics(width, height);
   dibujos.beginDraw();
-  dibujos.background(fondo);
+  dibujos.background(255);
   dibujos.endDraw();
 
-  tiempoLimite = 20;
+  tiempoLimite = 12;
   grosorDibujo = 12;
   grosorLinea = 4;
   estado = "DIBUJAR";
   pelotaDesactivada = false;
   oscDesactivado = false;
   fantasmasDesactivado = false;
+  alarmaDesactivada = false;
+  perder = false;
   objetos();
   theBlobDetection = new BlobDetection(dibujos.width, dibujos.height);
 }

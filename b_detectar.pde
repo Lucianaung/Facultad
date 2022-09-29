@@ -27,6 +27,6 @@ void detectar() {
     }
   }
   dibujos.beginDraw();
-  dibujos.background(fondo);
+  dibujos.background(255);
   dibujos.endDraw();
 }
