@@ -1,7 +1,6 @@
-/* -----ANOTACIONES-----
-Las conexiones se cambian desde A_Conexiones. Ahí se controlan los estados.
-Ya está todo conectado para que funcione con 12 caracteres de señal Arduino :)
-*/
+// -----ANOTACIONES-----
+//Las conexiones se cambian desde A_Conexiones. Ahí se controlan los estados.
+//Ya está todo conectado para que funcione con 12 caracteres de señal Arduino :)
 import spout.*;
 import processing.sound.*;
 import processing.serial.*;
