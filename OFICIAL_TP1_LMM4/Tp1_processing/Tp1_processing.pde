@@ -1,9 +1,18 @@
+/* -----ANOTACIONES-----
+Las conexiones se cambian desde A_Conexiones. Ahí se controlan los estados.
+Ya está todo conectado para que funcione con 12 caracteres de señal Arduino :)
+*/
+import spout.*;
 import processing.sound.*;
 import processing.serial.*;
 import gifAnimation.*;
 
 Serial myPort;
 String portStream;
+
+//DECLARO CLASES OBJETOS
+Conexion conexion;
+Spout spout;
 
 // DECLARO LOS ARREGLOS GIF
 Gif []  imgCara = new Gif [9];
@@ -12,11 +21,8 @@ Gif [] imgTextura = new Gif [3];
 // DECLARO SONIDOS
 SoundFile habla, notificacion, interferencia, cortocircuito;
 
-//DECLARO CLASES OBJETOS
-Conexion conexion;
-
 void setup() {
-  size(1500, 700);
+  size(1500, 700, P3D);
 
   String portName = Serial.list()[0];
   myPort = new Serial (this, portName, 9600);
@@ -51,14 +57,35 @@ void setup() {
   notificacion = new SoundFile (this, "notificacion.mp3");
   interferencia = new SoundFile (this, "interferencia.mp3");
   cortocircuito = new SoundFile (this, "cortocircuito.mp3");
-  
+
   habla.loop();
+  habla.rate(1.0);
+  habla.amp(0.0);
+  notificacion.loop();
+  notificacion.rate(1.0);
+  notificacion.amp(0.0);
+  interferencia.loop();
+  interferencia.amp(0.0);
+  cortocircuito.loop();
+  cortocircuito.rate(1.0);
+  cortocircuito.amp(0.0);
+
+  spout = new Spout(this);
+  spout.createSender("Tp1_processing");
 }
 
 void draw() {
   background(0);
+  push();
+  noFill();
+  strokeWeight(2);
+  stroke(150);
+  rect(550, 50, 400, 500);
+  rect(89, 50, 400, 500);
+  pop();
   conexion.conexiones();
   conexion.pasoEstado();
+  spout.sendTexture();
 }
 
 void serialEvent(Serial myPort) {

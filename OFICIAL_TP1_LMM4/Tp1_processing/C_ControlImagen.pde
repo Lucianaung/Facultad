@@ -1,11 +1,15 @@
 class ControlCaras {
   int imgC;
+  int posX;
+  int posY;
 
   ControlCaras() {
   }
-  void cara(int numCara) {
+  void cara(int numCara, int x, int y) {
     imgC = numCara;
-    image(imgCara[imgC], 89, 50, 400, 500);
+    posX = x;
+    posY = y;
+    image(imgCara[imgC], posX, posY, 400, 500);
   }
 }
 
