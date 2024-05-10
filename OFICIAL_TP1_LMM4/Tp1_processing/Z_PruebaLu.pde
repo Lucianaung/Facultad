@@ -1,4 +1,4 @@
-/* PRUEBAS CON MI ARDUINO Y PROTO DE 6 BOTONES
+// PRUEBAS CON MI ARDUINO Y PROTO DE 6 BOTONES
 class Conexion {
   EstadosVisual estadosVisual;
   EstadosSonido estadosSonido;
@@ -121,4 +121,3 @@ class Conexion {
     }
   }
 }
-*/

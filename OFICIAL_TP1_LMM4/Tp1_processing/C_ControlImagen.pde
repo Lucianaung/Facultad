@@ -20,6 +20,16 @@ class ControlTexturas {
   }
   void textura(int numCara) {
     imgT = numCara;
-    image(imgTextura[imgT], 550, 50, 400, 500);
+    image(imgTextura[imgT], 550, 26, 400, 500);
+  }
+}
+class ControlOrejas {
+  int imgO;
+  
+  ControlOrejas() {
+  }
+  void oreja(int numOreja) {
+    imgO = numOreja;
+    image(imgOreja[imgO], 550, 573, 400, 500);
   }
 }

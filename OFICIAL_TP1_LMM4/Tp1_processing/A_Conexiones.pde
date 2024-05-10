@@ -1,4 +1,4 @@
-class Conexion {
+/*class Conexion {
   EstadosVisual estadosVisual;
   EstadosSonido estadosSonido;
   // DECLARO PINES CON VALOR INICIAL --> CAMBIARLOS A 1 CON EL CODIGO DE TATI
@@ -97,10 +97,10 @@ class Conexion {
   void pasoEstado() {
 
     if (cantidadTrue == 0) {
-      estadosVisual.estado0();
+      estadosVisual.estado0(0.01);
       estadosSonido.estado0();
     } else if (cantidadTrue == 1 ) {
-      estadosVisual.estado1();
+      estadosVisual.estado1(10);
       estadosSonido.estado1();
     } else if (cantidadTrue == 2 ) {
       estadosVisual.estado2();
@@ -120,3 +120,4 @@ class Conexion {
     }
   }
 }
+*/
